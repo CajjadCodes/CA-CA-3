@@ -36,4 +36,35 @@ output [1:0] PCSrc;
 		.bne(bne)
 		);
 
+	StateMachine SM(
+		.clk(clk), 
+		.rst(rst), 
+		.RT(RT), 
+		.addi(addi),
+		.andi(andi), 
+		.lw(lw), 
+		.sw(sw),
+		.j(j),
+		.jal(jal),
+		.jr(jr),
+		.beq(beq),
+		.bne(bne),
+		.PCWrite(PCWrite), 
+		.PCWriteCondBeq(PCWriteCondBeq), 
+		.PCWriteCondBne(PCWriteCondBne), 
+		.IorD(IorD),
+		.IRWrite(IRWrite), 
+		.RegDst(RegDst),
+		.JalSig1(JalSig1),
+		.JalSig2(JalSig2), 
+		.MemToReg(MemToReg), 
+		.MemRead(MemRead), 
+		.MemWrite(MemWrite), 
+		.RegWrite(RegWrite),
+		.ALUSrcA(ALUSrcA), 
+		.ALUSrcB(ALUSrcB), 
+		.ALUOp(ALUOp), 
+		.PCSrc(PCSrc)
+		);
+
 endmodule 

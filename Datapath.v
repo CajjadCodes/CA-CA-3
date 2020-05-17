@@ -1,5 +1,5 @@
-module Datapath(PCWrite,IorD,MemRead,MemWrite,IRWrite,RegDst1,JalSig1,MemToReg,JalSig2,RegWrite,ALUSrcA,ALUSrcB,ALUOperation,PCSrc,opc,func,zero);
-input PCWrite;
+module Datapath(PCLoad,IorD,MemRead,MemWrite,IRWrite,RegDst1,JalSig1,MemToReg,JalSig2,RegWrite,ALUSrcA,ALUSrcB,ALUOperation,PCSrc,opc,func,zero);
+input PCLoad;
 input IorD;
 input MemRead;
 input MemWrite;
@@ -22,6 +22,7 @@ output zero;
 		.clk(clk),
 		.rst(rst),
 		.d(PCIn),
+		.ld(PCLoad),
 		.q(PCOut)
 		);
 
@@ -48,6 +49,7 @@ output zero;
 		.clk(clk),
 		.rst(rst),
 		.d(MemReadData),
+		.ld(IRWrite),
 		.q(IROut)
 		);
 
@@ -56,6 +58,7 @@ output zero;
 		.clk(clk),
 		.rst(rst),
 		.d(MemReadData),
+		.ld(1'b1),
 		.q(MDROut)
 		);
 
@@ -127,6 +130,7 @@ output zero;
 		.clk(clk),
 		.rst(rst),
 		.d(RegReadData1),
+		.ld(1'b1),
 		.q(AOut)
 		);
 
@@ -135,6 +139,7 @@ output zero;
 		.clk(clk),
 		.rst(rst),
 		.d(RegReadData2),
+		.ld(1'b1),
 		.q(BOut)
 		);
 
@@ -169,6 +174,7 @@ output zero;
 		.clk(clk),
 		.rst(rst),
 		.d(res),
+		.ld(1'b1)
 		.q(ALUOut)
 		);
 

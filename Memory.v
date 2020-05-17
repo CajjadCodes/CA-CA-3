@@ -8,7 +8,7 @@ input [31:0]WriteData;
 
 	reg [31:0]Mem[0:8191]; //32 KB - 8 KW
 
-	assign ReadData = MemRead ? Mem[adr[31:2]] : 32'bz;
+	assign ReadData = MemRead ? Mem[adr[31:2]] : ReadData;
 
 	always@(posedge clk) begin
 		if (MemWrite) begin

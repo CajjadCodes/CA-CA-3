@@ -31,15 +31,16 @@ output reg [1:0] ALUSrcB;
 output reg [1:0] ALUOp; 
 output reg [1:0] PCSrc;
 
-	reg [3:0] ps, ns;
-	parameter [3:0] IF = 4'b0000, ID = 4'b0001, J3 = 4'b0010, BEQ3 = 4'b0011, BNE3 = 4'b0100,
-			RT3 = 4'b0101, RT4 = 4'b0110, ADDI3 = 4'b0111, IMM4 = 4'b1000,
-			ANDI3 = 4'b1001, MEMREF3= 4'b1010, SW4 = 4'b1011, LW4 = 4'b1100,
-			LW5 = 4'b1101, JR3 = 4'b1110, JAL3 = 4'b1111;
+	reg [4:0] ps, ns;
+	parameter [4:0] STANDBY = 5'b11111, IF = 5'b00000, ID = 5'b00001, J3 = 5'b00010, BEQ3 = 5'b00011, BNE3 = 5'b00100,
+			RT3 = 5'b00101, RT4 = 5'b00110, ADDI3 = 5'b00111, IMM4 = 5'b01000,
+			ANDI3 = 5'b01001, MEMREF3= 5'b01010, SW4 = 5'b01011, LW4 = 5'b01100,
+			LW5 = 5'b01101, JR3 = 5'b01110, JAL3 = 5'b01111;
 	
 	always @(ps or RT or addi or andi or lw or sw or j or jal or jr or beq or bne) begin
-		ns = 4'b0;
+		ns = STANDBY;
 		case(ps)
+			STANDBY: ns = IF;
 			IF: ns = ID;
 			ID: ns = j? J3:
 				beq? BEQ3:
@@ -67,14 +68,15 @@ output reg [1:0] PCSrc;
 			LW5: ns = IF;
 			JR3: ns = IF;
 			JAL3: ns = IF;
+			default: ns = IF;
 		endcase
 	end
 
 	always @(ps) begin
-		{PCWrite, PCWriteCondBeq, PCWriteCondBne, IorD} = 4'b0;
-		{IRWrite, RegDst, JalSig1, JalSig2, MemToReg} = 5'b0;
-		{MemRead, MemWrite, RegWrite, ALUSrcA} = 4'b0;
-		{ALUSrcB, ALUOp, PCSrc} = 6'b0;
+		{PCWrite, PCWriteCondBeq, PCWriteCondBne, IorD} = 4'b0000;
+		{IRWrite, RegDst, JalSig1, JalSig2, MemToReg} = 5'b00000;
+		{MemRead, MemWrite, RegWrite, ALUSrcA} = 4'b0000;
+		{ALUSrcB, ALUOp, PCSrc} = 6'b000000;
 		case(ps)
 			IF: begin {IorD, MemRead, IRWrite, ALUSrcA, PCWrite} = 5'b01101;
 				ALUSrcB = 2'b01; ALUOp = 2'b00; PCSrc = 2'b00; end
@@ -100,7 +102,7 @@ output reg [1:0] PCSrc;
 	end
 
 	always @(posedge clk or posedge rst) begin
-		if (rst) ps <= 4'b0;
+		if (rst) ps <= STANDBY;
 		else ps <= ns;
 	end
 

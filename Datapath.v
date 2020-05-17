@@ -192,3 +192,4 @@ output zero;
 	assign func=IROut[5:0];
 
 endmodule
+

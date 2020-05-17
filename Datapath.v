@@ -82,8 +82,8 @@ output zero;
 
 	wire [31:0]MemToRegMuxOut;
 	Mux2to1_32bit MemToRegMux(
-		.inp0(MDROut),
-		.inp1(ALUOut),
+		.inp0(ALUOut),
+		.inp1(MDROut),
 		.sel(MemToReg),
 		.out(MemToRegMuxOut)
 		);
@@ -182,11 +182,14 @@ output zero;
 
 	Mux4to1_32bit PCSrcBMux(
 		.inp0(res),
-		.inp1({JumpAdrShifterOut,PCOut[31:28]}),
+		.inp1({PCOut[31:28],JumpAdrShifterOut}),
 		.inp2(ALUOut),
 		.inp3(AOut),
 		.sel(PCSrc),
 		.out(PCIn)
 		);
+
+	assign opc=IROut[31:26];
+	assign func=IROut[5:0];
 
 endmodule

@@ -1,10 +1,12 @@
-module Datapath(PCLoad,IorD,MemRead,MemWrite,IRWrite,RegDst1,JalSig1,MemToReg,JalSig2,RegWrite,ALUSrcA,ALUSrcB,ALUOperation,PCSrc,opc,func,zero);
+module Datapath(clk,rst,PCLoad,IorD,MemRead,MemWrite,IRWrite,RegDst,JalSig1,MemToReg,JalSig2,RegWrite,ALUSrcA,ALUSrcB,ALUOperation,PCSrc,opc,func,zero);
+input clk;
+input rst;
 input PCLoad;
 input IorD;
 input MemRead;
 input MemWrite;
 input IRWrite;
-input RegDst1;
+input RegDst;
 input JalSig1;
 input MemToReg;
 input JalSig2;

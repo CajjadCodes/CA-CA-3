@@ -1,3 +1,4 @@
+`timescale 1ns/100ps
 module TBmips();
 
 	reg clk = 1, rst = 0;
@@ -8,15 +9,15 @@ module TBmips();
 		);
 	
 	integer CycleNum = 0;
-	always #150 clk = ~clk;
-	always #300 CycleNum = CycleNum + 1;
+	always #1 clk = ~clk;
+	always #2 CycleNum = CycleNum + 1;
 	initial begin
-		#100
+		#0.66
 		rst = 1;
-		#300
+		#2
 		rst = 0;
 	
-		#1000000
+		#10000
 		$stop;
 	end
 

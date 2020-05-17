@@ -156,7 +156,7 @@ output zero;
 	wire [31:0]B;
 	Mux4to1_32bit ALUSrcBMux(
 		.inp0(BOut),
-		.inp1(4),
+		.inp1(32'b100),
 		.inp2(SEOut),
 		.inp3(OffsetAdrShifterOut),
 		.sel(ALUSrcB),

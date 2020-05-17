@@ -40,8 +40,7 @@ output reg [1:0] PCSrc;
 	always @(ps or RT or addi or andi or lw or sw or j or jal or jr or beq or bne) begin
 		ns = 4'b0;
 		case(ps)
-			IF: begin {IorD, MemRead, IRWrite, ALUSrcA, PCWrite} = 5'b01101;
-				ALUSrcB = 2'b01; ALUOp = 2'b00; PCSrc = 2'b00; end
+			IF: ns = ID;
 			ID: ns = j? J3:
 				beq? BEQ3:
 				bne? BNE3:

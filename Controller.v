@@ -27,6 +27,7 @@ output [1:0] PCSrc;
 	wire PCWrite, PCWriteCondBeq, PCWriteCondBne;
 
 	OpcDCD opcDcd(
+		.opc(opc),
 		.RT(RT),
 		.addi(addi),
 		.andi(andi),

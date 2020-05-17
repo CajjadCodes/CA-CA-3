@@ -75,7 +75,7 @@ output zero;
 	wire [4:0]WriteReg;
 	Mux2to1_5bit JalSig1Mux(
 		.inp0(RegDstMuxOut),
-		.inp1(31),
+		.inp1(5'b11111),
 		.sel(JalSig1),
 		.out(WriteReg)
 		);

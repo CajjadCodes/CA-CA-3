@@ -174,7 +174,7 @@ output zero;
 		.clk(clk),
 		.rst(rst),
 		.d(res),
-		.ld(1'b1)
+		.ld(1'b1),
 		.q(ALUOut)
 		);
 

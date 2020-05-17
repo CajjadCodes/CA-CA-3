@@ -36,14 +36,14 @@ output zero;
 		.out(MemAdr)
 		);
 
-	wire [31:0]MemReadData,MemWriteData;
+	wire [31:0]MemReadData,BOut;
 	Memory Mem(
 		.clk(clk),
 		.adr(MemAdr),
 		.MemRead(MemRead),
 		.MemWrite(MemWrite),
 		.ReadData(MemReadData),
-		.WriteData(MemWriteData)
+		.WriteData(BOut)
 		);
 
 	wire [31:0]IROut;
@@ -136,7 +136,6 @@ output zero;
 		.q(AOut)
 		);
 
-	wire [31:0]BOut;
 	Reg32 BReg(
 		.clk(clk),
 		.rst(rst),

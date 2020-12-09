@@ -1,3 +1,5 @@
-# CA-CA-3
-Computer Architecture - Computer Assignment 3 - 
-MIPS Multi-Cycle Design and Implementation
+# MIPS Multi-Cycle Design and Implementation
+
+Computer Architecture Project - Assignment 3
+
+
